@@ -24,7 +24,6 @@ public class Decoding {
     static  final String algorithmStr = "AES/CBC/PKCS7Padding";
     private static Key key;
     private static Cipher cipher;
-    boolean isInited = false;
 
     //默认对称解密算法初始向量 iv
     static byte[] iv = { 0x30, 0x31, 0x30, 0x32, 0x30, 0x33, 0x30, 0x34, 0x30, 0x35, 0x30, 0x36, 0x30, 0x37, 0x30, 0x38 };
@@ -42,7 +41,6 @@ public class Decoding {
         }
         // 初始化
         Security.addProvider(new BouncyCastleProvider());
-        // 转化成JAVA的密钥格式
         key = new SecretKeySpec(keyBytes, KEY_ALGORITHM);
         try {
             // 初始化cipher
@@ -61,12 +59,9 @@ public class Decoding {
     /**
      * 解密方法
      *
-     * @param encryptedData
-     *        要解密的字符串
-     * @param keyBytes
-     *        解密密钥
-     * @param ivs
-     *        自定义对称解密算法初始向量 iv
+     * @param encryptedData 要解密的字符串
+     * @param keyBytes 解密密钥
+     * @param ivs 自定义对称解密算法初始向量 iv
      * @return
      */
 
